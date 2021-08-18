@@ -1,0 +1,91 @@
+{% extends '../vista_principal.html' %}
+{% block titulo %}
+Pagos de Agua
+{% endblock titulo %}
+
+{% block body %}
+<div style="margin-bottom: 10px;">
+    <button class="btn btn-primary" type="button" onclick="abrir_modal_creacion('{% url 'vista_crearPago' %}')">
+        Nuevo Pago
+    </button>
+</div>
+
+{% if pagos  %}
+    <div class="card-header text-center bg-light">
+        <strong class="card-title">Listado de Pagos de Agua</strong>
+    </div>
+    <div class="table-stats order-table ov-h bg-light">
+        <table class="table display" id='table_id'>
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Tesorero</th>
+                    <th>Mes desde</th>
+                    <th>Mes hasta</th>
+                    <th>Costo Servicio</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in pagos %}
+                <tr class="bg-light">
+                    <td>{{p.usuario.nombres}} {{p.usuario.apellidos}}</td>
+                    <td>{{p.tesorero.nombres}} {{p.tesorero.apellidos}}</td>
+                    <td>{{p.mesDesde}}</td>
+                    <td>{{p.mesHasta}}</td>
+                    <td>{{p.costoServicio}}</td>
+                    <td>
+                        <!--
+                        <a class="btn btn-primary" onclick="abrir_modal_edicion('{% url 'vista_modificarPago' p.idPago %}')">
+                            Modificar
+                        </a>-->
+                        <a class="btn btn-success" href="{% url 'recibo' p.idPago %}">
+                            Generar Recibo
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <h3 class="p-2 text-sm-center bg-light">No existen Pagos de Agua registrados.</h3>
+{% endif %}
+
+<div class="modal face" id="creacion" role="dialog"></div>
+<div class="modal face" id="edicion" role="dialog"></div>
+
+{% endblock body %}
+
+{% block extrajs %}
+
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+    $(document).ready( function () {
+        $('#table_id').DataTable({
+            "aLengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+            "language": {
+                "url": "//cdn.databases.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                "lengthMenu": "Mostrar _MENU_ ",
+                "zeroRecords": "Registro no encontrado",
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay registros disponibles",
+                "infoFiltered": "(filtered from _MAX_ registros totales)",
+                "pagingType": "full_numbers",
+                "search": "Buscar: ",
+            }
+        });
+    } );
+    function abrir_modal_creacion(url){
+        $('#creacion').load(url,function(){
+            $(this).modal('show')
+        });    
+    }
+    function abrir_modal_edicion(url){
+        $('#edicion').load(url,function(){
+            $(this).modal('show')
+        });
+    }
+</script>
+
+{% endblock extrajs %}

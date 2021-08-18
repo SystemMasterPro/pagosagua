@@ -1,0 +1,90 @@
+{% extends '../vista_principal.html' %}
+{% block titulo %}
+Servicios de Agua
+{% endblock titulo %}
+
+{% block body %}
+
+<div style="margin-bottom: 10px;">
+    <button class="btn btn-primary" type="button" onclick="abrir_modal_creacion('{% url 'vista_nuevoServicioAgua' %}')">
+        Nuevo Servicio Agua
+    </button>
+</div>
+
+{% if servicios %}
+    <div class="card-header text-center bg-light">
+        <strong class="card-title">Listado Servicios de Agua</strong>
+    </div>
+    <div class="table-stats order-table ov-h bg-light">
+        <table class="table display" id="table_id">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Costo Activacion</th>
+                    <th>Motivo Suspensión</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in servicios %}
+                <tr class="bg-light">
+                    <td>{{s.usuario.nombres}} {{s.usuario.apellidos}}</td> 
+                    <td>{{s.costoActivacion}}</td>
+                    <td>{{s.motivoSuspension}}</td>
+                    <td>
+                        {% if s.estado %}
+                            <a class="btn btn-danger text-light" onclick="abrir_modal_edicion('{% url 'vista_suspenderServicio' s.idServicioAgua %} ')">
+                                Suspender Servicio
+                            </a>
+                        {% else %}
+                            <a class="btn btn-primary" href="{% url 'vista_activarServicio' s.idServicioAgua %}">
+                                Activar Servicio
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <h3 class="p-2 text-sm-center bg-light">No existen Servicios de Agua registrados.</h3>
+{% endif %}
+
+<div class="modal face" id="creacion" role="dialog"></div>
+<div class="modal face" id="edicion" role="dialog"></div>
+
+{% endblock body %}
+
+{% block extrajs %}
+
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+    $(document).ready( function () {
+        $('#table_id').DataTable({
+            "aLengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+            "language": {
+                "url": "//cdn.databases.net/plug-ins/9dcbecd42ad/i18n/Spanish.json",
+                "lengthMenu": "Mostrar _MENU_ ",
+                "zeroRecords": "Registro no encontrado",
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay registros disponibles",
+                "infoFiltered": "(filtered from _MAX_ registros totales)",
+                "pagingType": "full_numbers",
+                "search": "Buscar: ",
+            }
+        });
+    } );
+    function abrir_modal_creacion(url){
+        $('#creacion').load(url,function(){
+            $(this).modal('show')
+        });    
+    }
+    function abrir_modal_edicion(url){
+        $('#edicion').load(url,function(){
+            $(this).modal('show')
+        });
+    }
+</script>
+
+{% endblock extrajs %}

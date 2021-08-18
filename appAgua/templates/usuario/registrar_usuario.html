@@ -1,0 +1,81 @@
+{% extends '../vista_principal.html' %}
+{% block titulo %} Registrar Usuario {% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="d-flex justify-content-center h-200">
+        <div class="card h-100">
+            <div class="card-header text-center">
+                <h3>NUEVO USUARIO</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="fieldWrapper col-sm12 control-label">
+                        <div class="text-white">Usuario:</div>
+                        <div class="row-nombre">
+                            <input type="text" name="username" id="username" required="True" class="form-control">
+                        </div>
+                    </div>
+    
+                    <div class="fieldWrapper col-sm12 control-label">
+                        <div class="text-white">Password:</div>
+                        <div class="row-nombre">
+                            <input type="password" name="password1" id="password1" required="True" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="fieldWrapper col-sm12 control-label">
+                        <div class="text-white">Confirmar Password:</div>
+                        <div class="row-nombre">
+                            <input type="password" name="password2" id="password2" required="True" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="fieldWrapper col-sm12 control-label">
+                        <div class="text-white">Nombres:</div>
+                        <div class="row-nombre">
+                            <input type="text" name="nombres" id="nombres" required="True" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="fieldWrapper col-sm12 control-label">
+                        <div class="text-white">Apellidos:</div>
+                        <div class="row-nombre">
+                            <input type="text" name="apellidos" id="apellidos" required="True" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="fieldWrapper col-sm12 control-label">
+                        <div class="text-white">Cedula:</div>
+                        <div class="row-nombre">
+                            <input type="text" name="cedula" id="cedula" required="True" class="form-control">
+                        </div>
+                    </div>
+    
+                    <div class="fieldWrapper col-sm12 control-label">
+                        <div class="text-white">Celular:</div>
+                        <div class="row-nombre">
+                            <input type="text" name="celular" id="celular" required="True" class="form-control">
+                        </div>
+                    </div>
+    
+                    <div class="fieldWrapper col-sm12 control-label">
+                        <div class="text-white">Correo:</div>
+                        <div class="row-nombre">
+                            <input type="email" name="correo" id="correo" required="True" class="form-control">
+                        </div>
+                    </div>    
+    
+                    <br>
+                    <div class="form-group">
+                        <button class="btn btn-info float-left" type="submit">Guardar</button>
+                        <button class="btn btn-danger float-right" onclick="window.location='/listar_usuario/'">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
