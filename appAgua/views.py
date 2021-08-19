@@ -104,7 +104,7 @@ class ActualizarTesorero(UpdateView):
     model = Tesorero
     form_class = TesoreroForm
     template_name = 'tesorero/modificar_tesorero.html'
-    success_url = reverse_lazy('vista_editarTesorero')
+    success_url = reverse_lazy('listarTesoreros')
 
 ################     PAGOS DE AGUA     ###############       
 
@@ -124,7 +124,7 @@ class ActualizarPago(UpdateView):
     model = Pago
     form_class = PagoForm
     template_name = 'pagos/modificar_pago.html'
-    success_url = reverse_lazy('vista_modificarPago')
+    success_url = reverse_lazy('vista_listarPagos')
 
 def render_to_pdf(template_src, context_dict={}):
     template = get_template(template_src)
