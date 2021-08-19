@@ -98,7 +98,7 @@ class CrearTesorero(CreateView):
     model = Tesorero
     form_class = TesoreroForm
     template_name = 'tesorero/nuevo_tesorero.html'
-    success_url = reverse_lazy('vista_listarTesoreros')
+    success_url = reverse_lazy('listarTesoreros')
 
 class ActualizarTesorero(UpdateView):
     model = Tesorero
