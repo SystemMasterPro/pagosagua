@@ -29,7 +29,7 @@ urlpatterns = [
     path('modificarUsuario/<int:pk>/',login_required(ActualizarUsuario.as_view()), name='vista_modificarUsuario'),
     
     path('crearTesorero/', login_required(CrearTesorero.as_view()), name='vista_crearTesorero'),
-    path('listarTesoreros/',login_required(ListadoTesoreros.as_view()), name='listar_tesoreros'),
+    path('listarTesoreros/',login_required(ListadoTesoreros.as_view()), name='listarTesoreros'),
     path('editarTesorero/<int:pk>/',login_required(ActualizarTesorero.as_view()), name='vista_editarTesorero'),
     
     path('listarServicios/',login_required(ListadoServicios.as_view()), name='vista_listarServicios'),
