@@ -28,7 +28,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'appAgua.apps.SuitConfig',
+    # 'appAgua.apps.SuitConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -103,7 +103,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'pagosagua',
         'USER': 'postgres',
-        'PASSWORD': 'lidia1923',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '5432',
     }
