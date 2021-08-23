@@ -22,7 +22,7 @@ SECRET_KEY = '!j(xglkie$qt6$$4+pd((9kl%jk4wt^ailfsqpc8nf@_stoii5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['45.90.108.67','pagosaguazarza.com']
+ALLOWED_HOSTS = ['45.90.108.67','pagosagua.com', 'www.pagosagua.com']
 
 
 # Application definition
